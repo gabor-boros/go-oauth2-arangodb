@@ -1,0 +1,66 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: "ubuntu-latest"
+    env:
+      GO111MODULE: on
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: '^1.20'
+      - name: Go CI Lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          args: --timeout 5m
+  test:
+    strategy:
+      matrix:
+        go:
+          - '^1.19'
+          - '^1.20'
+        os:
+          - ubuntu-latest
+    runs-on: '${{ matrix.os }}'
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: '${{ matrix.go }}'
+      - name: Test
+        run: make test
+      - name: Stash test results
+        uses: actions/upload-artifact@master
+        with:
+          name: "Test results"
+          path: .coverage.out
+          retention-days: 7
+  coverage:
+    name: coverage
+    runs-on: ubuntu-latest
+    needs:
+      - test
+    steps:
+      - uses: actions/checkout@v3
+      - name: Unstash test results
+        uses: actions/download-artifact@master
+        with:
+          name: "Test results"
+      - name: Upload test results
+        uses: paambaati/codeclimate-action@v3.2.0
+        env:
+          CC_TEST_REPORTER_ID: d5c468c1ee76f93de94ded02d71909190f21f7df7d67368e85695cafc730c7a4
+        with:
+          prefix: github.com/${{github.repository}}
+          coverageLocations: ${{github.workspace}}/.coverage.out:gocov
