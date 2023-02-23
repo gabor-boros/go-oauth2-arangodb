@@ -46,13 +46,13 @@ func WithTokenStoreDatabase(db arangoDriver.Database) TokenStoreOption {
 
 // TokenStoreItem data item
 type TokenStoreItem struct {
-	Key       string    `db:"_key"`
-	Code      string    `db:"code"`
-	Access    string    `db:"access_token"`
-	Refresh   string    `db:"refresh_token"`
-	Data      []byte    `db:"data"`
-	CreatedAt time.Time `db:"created_at"`
-	ExpiresAt time.Time `db:"expires_at"`
+	Key       string    `json:"_key,omitempty"`
+	Code      string    `json:"code"`
+	Access    string    `json:"access_token"`
+	Refresh   string    `json:"refresh_token"`
+	Data      []byte    `json:"data"`
+	CreatedAt time.Time `json:"created_at"`
+	ExpiresAt time.Time `json:"expires_at"`
 }
 
 // TokenStore is a data struct that stores oauth2 client information.
@@ -97,7 +97,7 @@ func (s *TokenStore) removeByQuery(ctx context.Context, query string, bindVars m
 	return cursor.Close()
 }
 
-// Create creates a new client in the store.
+// Create creates a new token in the store.
 func (s *TokenStore) Create(ctx context.Context, info oauth2.TokenInfo) error {
 	data, err := json.Marshal(info)
 	if err != nil {
