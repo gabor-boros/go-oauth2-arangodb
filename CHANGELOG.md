@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 **Bug Fixes**
 
-- Use json tag for token store item ([78ed7cd](https://github.com/gabor-boros/go-oauth2-arangodb/commit/78ed7cd5cc65445a39aa1cef1bfc1ef2ae385e39))
+- Use json tag for token store item ([86f519b](https://github.com/gabor-boros/go-oauth2-arangodb/commit/86f519b224791e7abb2fd50dbeeb5d1d19511aa1))
 
 ## [0.1.0] - 2023-02-23
 
