@@ -55,7 +55,7 @@ type TokenStoreItem struct {
 	ExpiresAt time.Time `json:"expires_at"`
 }
 
-// TokenStore is a data struct that stores oauth2 client information.
+// TokenStore is a data struct that stores oauth2 token information.
 type TokenStore struct {
 	db         arangoDriver.Database
 	collection string
