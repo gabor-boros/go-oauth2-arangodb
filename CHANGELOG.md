@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - Fix token store doc typo ([8aad6bf](https://github.com/gabor-boros/go-oauth2-arangodb/commit/8aad6bf8c2c64e966877ce2e0e89e0dc2d71372f))
 
+**Miscellaneous Tasks**
+
+- Update dependencies ([8184e89](https://github.com/gabor-boros/go-oauth2-arangodb/commit/8184e896abdf6728a18024979b8d4c6f5c719ea0))
+
 ## [0.1.1] - 2023-02-23
 
 **Bug Fixes**
