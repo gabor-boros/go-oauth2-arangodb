@@ -1,6 +1,5 @@
-ROOT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-COVERAGE_OUT := $(ROOT_DIR)/.coverage.out
-COVERAGE_HTML := $(ROOT_DIR)/coverage.html
+COVERAGE_OUT := .coverage.out
+COVERAGE_HTML := coverage.html
 GO_EXEC := $(shell which go)
 GO_TEST_COVER := $(GO_EXEC) test -shuffle=on -cover -covermode=atomic
 
@@ -28,8 +27,8 @@ bench: ## Run benchmarks
 
 .PHONY: format
 format: dep ## Format source code
-	gofmt -l -s -w $(ROOT_DIR)
-	goimports -w $(ROOT_DIR)
+	gofmt -l -s -w $(shell pwd)
+	goimports -w $(shell pwd)
 
 .PHONY: lint
 lint: dep ## Run linters
