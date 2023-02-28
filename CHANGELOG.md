@@ -12,6 +12,10 @@ All notable changes to this project will be documented in this file.
 
 - Update dependencies ([8184e89](https://github.com/gabor-boros/go-oauth2-arangodb/commit/8184e896abdf6728a18024979b8d4c6f5c719ea0))
 
+**Ci**
+
+- Add windows test target ([295fb9c](https://github.com/gabor-boros/go-oauth2-arangodb/commit/295fb9c0a5da4afc17c2683d3766fbe5915aeea2))
+
 ## [0.1.1] - 2023-02-23
 
 **Bug Fixes**
