@@ -3,7 +3,7 @@ module github.com/gabor-boros/go-oauth2-arangodb
 go 1.19
 
 require (
-	github.com/arangodb/go-driver v1.5.0
+	github.com/arangodb/go-driver v1.5.2
 	github.com/go-oauth2/oauth2/v4 v4.5.2
 	github.com/stretchr/testify v1.8.2
 )
