@@ -35,7 +35,7 @@ import (
 
 	"github.com/go-oauth2/oauth2/v4/manage"
 
-	arangoStore "github.com/gabor-boros/go-oauth2-arangodb"
+	arangostore "github.com/gabor-boros/go-oauth2-arangodb"
 )
 
 func main() {
@@ -49,21 +49,21 @@ func main() {
 	})
 
 	db, _ := client.Database(context.Background(), os.Getenv("ARANGO_DB"))
-	
-	clientStore, _ := arangoStore.NewClientStore(
-		arangoStore.WithClientStoreDatabase(db),
-		arangoStore.WithClientStoreCollection("oauth2_clients"),
+
+	clientStore, _ := arangostore.NewClientStore(
+		arangostore.WithClientStoreDatabase(db),
+		arangostore.WithClientStoreCollection("oauth2_clients"),
 	)
 
-	tokenStore, _ := arangoStore.NewTokenStore(
-		arangoStore.WithTokenStoreDatabase(db),
-		arangoStore.WithTokenStoreCollection("oauth2_tokens"),
+	tokenStore, _ := arangostore.NewTokenStore(
+		arangostore.WithTokenStoreDatabase(db),
+		arangostore.WithTokenStoreCollection("oauth2_tokens"),
 	)
 
 	manager := manage.NewDefaultManager()
 	manager.MapTokenStorage(tokenStore)
 	manager.MapClientStorage(clientStore)
-	
+
 	// ...
 }
 ```

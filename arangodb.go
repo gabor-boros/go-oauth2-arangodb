@@ -1,4 +1,4 @@
-package arangoStore
+package arangostore
 
 import "fmt"
 
